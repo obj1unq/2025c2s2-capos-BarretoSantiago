@@ -1,0 +1,33 @@
+import capos.*
+describe "Capos" {
+  test "Rolando 1.1" {
+    rolando.recolectar(espadaDelDestino)
+    rolando.recolectar(libroDeHechizos)
+    assert.throwsException({ rolando.recolectar(collarDivino)})
+    assert.equals(2, rolando.elementosMochila().size())
+  }
+  test "1.2"{
+    rolando.recolectar(espadaDelDestino)
+    rolando.recolectar(libroDeHechizos)
+    rolando.llegarA(castilloPiedra)
+    assert.equals(0, rolando.elementosMochila().size())
+    assert.equals(2, castilloPiedra.elementosCastillo().size())
+  }
+  test "Rolando 1.3"{
+    rolando.recolectar(espadaDelDestino)
+    rolando.recolectar(libroDeHechizos)
+    rolando.llegarA(castilloPiedra)
+    rolando.recolectar(collarDivino)
+    assert.equals(3, rolando.elementosTotales().size())
+    assert.that(rolando.tieneElemento(collarDivino))
+  }
+  test "1.4"{
+    rolando.recolectar(espadaDelDestino)
+    rolando.recolectar(libroDeHechizos)
+    assert.throwsException({rolando.recolectar(collarDivino)})
+    rolando.llegarA(castilloPiedra)
+    rolando.recolectar(armaduraAceroValyrio)
+    rolando.recolectar(collarDivino)
+    assert.equals(5, rolando.historialElementos().size())
+  }
+}
